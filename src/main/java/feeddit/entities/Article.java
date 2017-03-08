@@ -14,7 +14,6 @@ public class Article{
 
 //    @Version
 //    private Integer version;
-
     private Integer votes;
     private String byUser;
     private String headline;
