@@ -1,6 +1,7 @@
 package feeddit.entities;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 /**
@@ -10,37 +11,32 @@ import javax.persistence.*;
 public class Article{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
-//    @Version
-//    private Integer version;
-    private Integer votes;
-    private String byUser;
+
+    private Long byUser;
     private String headline;
     private String link;
     private String author;
+    private Integer votes;
+    private Date entryDate;
 
-    public Integer getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getVotes() {
-        return votes;
-    }
+    public Date getEntryDate() { return entryDate; }
 
-    public void setVotes(Integer votes) {
-        this.votes = votes;
-    }
+    public void setEntryDate(Date entryDate) { this.entryDate = entryDate;   }
 
-    public String getByUser() {
-        return byUser;
-    }
+    public Long getByUser() { return byUser;   }
 
-    public void setByUser(String byUser) {
+    public void setByUser(Long byUser) {
         this.byUser = byUser;
     }
 
@@ -66,5 +62,13 @@ public class Article{
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public Integer getVotes() {
+        return votes;
+    }
+
+    public void setVotes(Integer votes) {
+        this.votes = votes;
     }
 }

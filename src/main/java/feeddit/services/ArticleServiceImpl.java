@@ -17,6 +17,7 @@ public class ArticleServiceImpl implements ArticleService{
     public void setArticleRepository(ArticleRepository articleRepository){
         this.articleRepository=articleRepository;
     }
+
     @Override
     public Iterable<Article> listAllArticles(){
         return articleRepository.findAll();

@@ -23,6 +23,12 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
+    @RequestMapping(value = "/articles", method = RequestMethod.GET)
+    public String list(Model model) {
+        model.addAttribute("articles", articleService.listAllArticles());
+        return "articles";
+    }
+
     @RequestMapping("article/new")
     public String newArticle(Model model) {
         model.addAttribute("article", new Article());
@@ -41,12 +47,6 @@ public class ArticleController {
         return "articleshow";
     }
 
-    // ili     @RequestMapping(value = "/", method = RequestMethod.GET) ???
-    @RequestMapping(value = "/articles", method = RequestMethod.GET)
-    public String list(Model model) {
-        model.addAttribute("articles", articleService.listAllArticles());
-        return "articles";
-    }
 
     @RequestMapping("article/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
