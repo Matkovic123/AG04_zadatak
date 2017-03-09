@@ -5,6 +5,7 @@ import feeddit.services.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,19 +24,42 @@ public class ArticleController {
     }
 
     @RequestMapping("article/new")
-    public String newArticle(Model model){
+    public String newArticle(Model model) {
         model.addAttribute("article", new Article());
         return "articleform";
     }
 
-    @RequestMapping(value="article", method= RequestMethod.POST)
-    public String saveArticle(Article article)
-    {
+    @RequestMapping(value = "article", method = RequestMethod.POST)
+    public String saveArticle(Article article) {
         articleService.saveArticle(article);
         return "redirect:/article/" + article.getId();
     }
 
-    //tu si stal. Crveni se jer u services nisi složio interface, za sad je prazan.
+    @RequestMapping("article/{id}")
+    public String showArticle(@PathVariable Integer id, Model model) {
+        model.addAttribute("article", articleService.getArticleById(id));
+        return "articleshow";
+    }
+
+    // ili     @RequestMapping(value = "/", method = RequestMethod.GET) ???
+    @RequestMapping(value = "/articles", method = RequestMethod.GET)
+    public String list(Model model) {
+        model.addAttribute("articles", articleService.listAllArticles());
+        return "articles";
+    }
+
+    @RequestMapping("article/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model) {
+        model.addAttribute("article", articleService.getArticleById(id));
+        return "articleform";
+    }
+
+    @RequestMapping("article/delete/{id}")
+    public String delete(@PathVariable Integer id){
+        articleService.deleteArticle(id);
+        return "redirect:/articles";
+    }
+
 
 
 }
