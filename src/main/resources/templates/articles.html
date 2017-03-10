@@ -21,12 +21,11 @@
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
-            <tr th:each="product : ${articles}">
-               <td th:text="${article.id}"><a href="/article/${article.id}">Id</a></td>
-  <!--              <td th:text="${article.Id}">Id</td> -->
+            <tr th:each="article : ${articles}">
+                <td th:text="${article.id}"><a href="/article/${article.id}">Id</a></td>
                 <td th:text="${article.headline}">Headline</td>
                 <td th:text="${article.entryDate}">Added on</td>
-                <td><a th:href="${ '/article/' + article.id}">View</a></td>
+                <td><a th:href="${'/article/' + article.id}">View</a></td>
                 <td><a th:href="${'/article/edit/' + article.id}">Edit</a></td>
                 <td><a th:href="${'/article/delete/' + article.id}">Delete</a></td>
             </tr>

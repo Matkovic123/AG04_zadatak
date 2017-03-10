@@ -31,7 +31,7 @@ public class ArticleController {
 
     @RequestMapping("article/new")
     public String newArticle(Model model) {
-        model.addAttribute("article", new Article());
+        model.addAttribute("articles", new Article());
         return "articleform";
     }
 

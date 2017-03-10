@@ -13,14 +13,12 @@ public class Article{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
     private Long byUser;
     private String headline;
     private String link;
     private String author;
     private Integer votes;
     private Date entryDate;
-
 
     public Long getId() {
         return id;
@@ -30,11 +28,9 @@ public class Article{
         this.id = id;
     }
 
-    public Date getEntryDate() { return entryDate; }
-
-    public void setEntryDate(Date entryDate) { this.entryDate = entryDate;   }
-
-    public Long getByUser() { return byUser;   }
+    public Long getByUser() {
+        return byUser;
+    }
 
     public void setByUser(Long byUser) {
         this.byUser = byUser;
@@ -70,5 +66,13 @@ public class Article{
 
     public void setVotes(Integer votes) {
         this.votes = votes;
+    }
+
+    public Date getEntryDate() {
+        return entryDate;
+    }
+
+    public void setEntryDate(Date entryDate) {
+        this.entryDate = entryDate;
     }
 }
