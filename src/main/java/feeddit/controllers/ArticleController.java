@@ -29,9 +29,21 @@ public class ArticleController {
         return "articles";
     }
 
+    @RequestMapping("article/{id}")
+    public String showArticle(@PathVariable Long id, Model model) {
+        model.addAttribute("article", articleService.getArticleById(id));
+        return "articleshow";
+    }
+
     @RequestMapping("article/new")
     public String newArticle(Model model) {
-        model.addAttribute("articles", new Article());
+        model.addAttribute("article", new Article());
+        return "articleform";
+    }
+
+    @RequestMapping("article/edit/{id}")
+    public String edit(@PathVariable Long id, Model model) {
+        model.addAttribute("article", articleService.getArticleById(id));
         return "articleform";
     }
 
@@ -41,21 +53,8 @@ public class ArticleController {
         return "redirect:/article/" + article.getId();
     }
 
-    @RequestMapping("article/{id}")
-    public String showArticle(@PathVariable Integer id, Model model) {
-        model.addAttribute("article", articleService.getArticleById(id));
-        return "articleshow";
-    }
-
-
-    @RequestMapping("article/edit/{id}")
-    public String edit(@PathVariable Integer id, Model model) {
-        model.addAttribute("article", articleService.getArticleById(id));
-        return "articleform";
-    }
-
     @RequestMapping("article/delete/{id}")
-    public String delete(@PathVariable Integer id){
+    public String delete(@PathVariable Long id){
         articleService.deleteArticle(id);
         return "redirect:/articles";
     }

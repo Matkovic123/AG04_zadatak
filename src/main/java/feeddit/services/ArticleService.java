@@ -9,9 +9,9 @@ import feeddit.entities.Article;
 public interface ArticleService {
     Iterable<Article> listAllArticles();
 
-    Article getArticleById(Integer id);
+    Article getArticleById(Long id);
 
     Article saveArticle(Article article);
 
-    void deleteArticle (Integer id);
+    void deleteArticle (Long id);
 }

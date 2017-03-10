@@ -25,17 +25,18 @@ public class ArticleServiceImpl implements ArticleService{
 
 
     @Override
-    public Article getArticleById(Integer id){
+    public Article getArticleById(Long id){
         return articleRepository.findOne(id);
     }
 
     @Override
     public Article saveArticle (Article article){
+
         return articleRepository.save(article);
     }
 
     @Override
-    public void deleteArticle(Integer id){
+    public void deleteArticle(Long id){
         articleRepository.delete(id);
     }
 }
