@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ArticleController {
 
+    @Autowired
     private ArticleService articleService;
 
-    @Autowired
-    public void setArticleService(ArticleService articleService){
-        this.articleService = articleService;
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(){
+        return "login";
     }
 
     @RequestMapping(value = "/articles", method = RequestMethod.GET)
@@ -58,6 +59,7 @@ public class ArticleController {
         articleService.deleteArticle(id);
         return "redirect:/articles";
     }
+
 
 
 

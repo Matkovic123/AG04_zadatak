@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login Form</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+    <script type="text/javascript">
+        function checkInput() {
+            var username=document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            if(username=="" || password==""){
+                localStorage.setItem("empty", "true");
+                localStorage.setItem("wrong", "false");
+            }
+            else {
+                localStorage.setItem("wrong", "true");
+                localStorage.setItem("empty", "false");
+            }
+        }
+        window.onload = function() {
+             if(localStorage.getItem("empty")=="true") {
+                document.getElementById('usernameOrPasswordEmpty').innerHTML = '<label class="alert alert-danger" >Lozinka i korisničko ime su obavezna polja.</label>';
+            }
+            else if(localStorage.getItem("wrong")=="true") {
+                document.getElementById('usernameOrPasswordWrong').innerHTML = '<label class="alert alert-danger" >Korisničko ime ili lozinka su neispravni.</label>';
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/loginheader :: header"></th:block> /*/-->
+    <div th:if="${param.error}" class="text-center" id="usernameOrPasswordEmpty">
+    </div>
+    <div th:if="${param.error}" class="text-center" id="usernameOrPasswordWrong">
+    </div>
+
+    <div th:if="${param.logout}" class="text-center">
+        <label class="text-center alert alert-success">Uspješno ste se odjavili.</label>
+    </div>
+    <div class="jumbotron vertical-center">
+        <div class="container">
+        <form th:action="@{/login}" method="POST">
+
+            <table class="table table-striped">
+                <tr>
+                    <td class="text-center"><label> User Name : <input type="text" name="username" id="username" /> </label></td>
+                </tr>
+                <tr>
+                    <td class="text-center"><label> Password : <input type="password" name="password" id="password" /> </label></td>
+                </tr>
+                <tr>
+                    <td class="text-center"> <button type="submit" class="btn btn-default" value="send" onclick="checkInput();">Sign In</button></td>
+                </tr>
+            </table>
+        </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

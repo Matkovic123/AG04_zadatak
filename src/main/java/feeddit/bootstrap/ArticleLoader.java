@@ -12,12 +12,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ArticleLoader {
-
+    @Autowired
     private ArticleRepository articleRepository;
 
-    @Autowired
-    public void setProductRepository(ArticleRepository productRepository) {
-        this.articleRepository = articleRepository;
-    }
 
 }
