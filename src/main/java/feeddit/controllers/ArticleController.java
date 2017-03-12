@@ -16,6 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ArticleController {
 
+    @RequestMapping("/")
+    public String index()
+    {
+        return "/articles";
+    }
+
     @Autowired
     private ArticleService articleService;
 

@@ -4,17 +4,18 @@
 
     <title>Feeddit App Articles</title>
 
+
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
     <div th:if="${not #lists.isEmpty(articles)}">
-        <h2>Article List</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>Id</th>
-<!--            <th>Article Id</th> -->
+           <h2>Article List</h2>
+           <table class="table table-striped">
+               <tr>
+                <th>Article Id</th>
                 <th>Headline</th>
                 <th>Added on</th>
                 <th>View</th>
@@ -32,7 +33,9 @@
         </table>
 
     </div>
+    <div th:if="${#lists.isEmpty(articles)}">
+        <label class="alert alert-info">Trenutno nema članaka za prikaz.</label>
+    </div>
 </div>
-
 </body>
 </html>
