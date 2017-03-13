@@ -33,7 +33,7 @@ public class ArticleController {
         return "login";
     }
 
-    @RequestMapping(value = "/articles", method = RequestMethod.GET)
+    @RequestMapping(value = "articles", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("articles", articleService.listAllArticles());
         return "articles";
