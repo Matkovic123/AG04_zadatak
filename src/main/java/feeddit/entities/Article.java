@@ -17,8 +17,8 @@ public class Article{
     private String headline;
     private String link;
     private String author;
-    private Integer votes;
     private Date entryDate;
+    private Integer votes;
 
     public Long getId() {
         return id;

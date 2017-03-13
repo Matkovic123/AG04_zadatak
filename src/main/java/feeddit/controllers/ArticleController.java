@@ -5,9 +5,12 @@ import feeddit.services.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.validation.Valid;
 
 /**
  * Created by Matkovic on 8.3.2017..
@@ -19,7 +22,7 @@ public class ArticleController {
     @RequestMapping("/")
     public String index()
     {
-        return "/articles";
+        return "articles";
     }
 
     @Autowired
@@ -30,7 +33,7 @@ public class ArticleController {
         return "login";
     }
 
-    @RequestMapping(value = "/articles", method = RequestMethod.GET)
+    @RequestMapping(value = "articles", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("articles", articleService.listAllArticles());
         return "articles";
