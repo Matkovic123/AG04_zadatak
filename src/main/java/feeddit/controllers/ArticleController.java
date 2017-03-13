@@ -20,9 +20,8 @@ import javax.validation.Valid;
 public class ArticleController {
 
     @RequestMapping("/")
-    public String index()
-    {
-        return "articles";
+    public String index() {
+        return "redirect:/articles";
     }
 
     @Autowired
