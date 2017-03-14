@@ -26,7 +26,6 @@ public class ArticleServiceImpl implements ArticleService{
 
     @Override
     public Article saveArticle (Article article){
-
         return articleRepository.save(article);
     }
 
