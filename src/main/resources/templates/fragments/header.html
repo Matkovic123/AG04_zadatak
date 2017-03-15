@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head lang="en">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
@@ -29,6 +29,9 @@
                 </ul>
             </div>
         </nav>
+        <div class="welcome">
+            <span sec:authorize="isAuthenticated()">Welcome <span sec:authentication="name"></span></span>
+        </div>
 
         <div class="jumbotron">
             <div class="row text-center">
