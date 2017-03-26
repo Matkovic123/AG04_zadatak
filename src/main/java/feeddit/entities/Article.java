@@ -1,8 +1,18 @@
 package feeddit.entities;
 
+import feeddit.controllers.ArticleController;
+import org.springframework.beans.factory.support.SecurityContextProvider;
+import org.springframework.security.access.SecurityConfig;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextImpl;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 
+import java.security.Security;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -12,14 +22,13 @@ import java.util.Date;
 /**
  * Created by Matkovic on 7.3.2017..
  */
-@Entity
 
+@Entity
 public class Article{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    private Long byUser;
+    private String byUser;
     private String headline;
     private String link;
     private String author;
@@ -33,8 +42,7 @@ public class Article{
         Date today = Calendar.getInstance().getTime();
         this.entryDate = df.format(today);
         this.votes = 0;
-        //Ovo makni kad središ user bazu
-        this.byUser = new Long (12);
+        this.byUser = "user";
     }
 
 
@@ -46,11 +54,11 @@ public class Article{
         this.id = id;
     }
 
-    public Long getByUser() {
+    public String getByUser() {
         return byUser;
     }
 
-    public void setByUser(Long byUser) {
+    public void setByUser(String byUser) {
         this.byUser = byUser;
     }
 

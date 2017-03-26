@@ -3,6 +3,8 @@ package feeddit.controllers;
 import feeddit.entities.Article;
 import feeddit.services.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class ArticleController {
+
 
     @RequestMapping("/")
     public String index() {
@@ -41,7 +44,7 @@ public class ArticleController {
         return "articleshow";
     }
 
-    @RequestMapping("article/new")
+    @RequestMapping("articleform")
     public String newArticle(Model model) {
         model.addAttribute("article", new Article());
         return "articleform";

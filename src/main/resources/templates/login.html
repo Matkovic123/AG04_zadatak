@@ -26,8 +26,6 @@
             else if(localStorage.getItem("wrong")=="true") {
                 document.getElementById('usernameOrPasswordWrong').innerHTML = '<label class="alert alert-danger" >Korisničko ime ili lozinka su neispravni.</label>';
             }
-
-
         }
     </script>
 </head>
@@ -44,20 +42,20 @@
     </div>
     <div class="jumbotron vertical-center">
         <div class="container">
-        <form th:action="@{/login}" method="POST">
+            <form th:action="@{/login}" method="post">
+                <table class="table table-striped">
 
-            <table class="table table-striped">
-                <tr>
-                    <td class="text-center"><label> User Name : <input type="text" name="username" id="username" /> </label></td>
-                </tr>
-                <tr>
-                    <td class="text-center"><label> Password : <input type="password" name="password" id="password" /> </label></td>
-                </tr>
-                <tr>
-                    <td class="text-center"> <button type="submit" class="btn btn-default" onclick="checkInput()">Sign In</button></td>
-                </tr>
-            </table>
-        </form>
+                    <tr>
+                        <td class="text-center"><label> User Name : <input type="text" name="username" id="username"/> </label></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><label> Password: <input type="password" name="password" id="password"/> </label></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><input type="submit" class="btn btn-default" onclick="checkInput()" value="Sign In"/></td>
+                    </tr>
+                </table>
+            </form>
         </div>
     </div>
 </div>
