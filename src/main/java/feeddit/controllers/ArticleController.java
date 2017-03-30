@@ -7,9 +7,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.validation.Valid;
 
 /**
  * Created by Matkovic on 8.3.2017..
@@ -51,7 +54,10 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "article", method = RequestMethod.POST)
-    public String saveArticle(Article article) {
+    public String saveArticle(@Valid Article article, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "articleform";
+        }
         articleService.saveArticle(article);
         return "redirect:/article/" + article.getId();
     }

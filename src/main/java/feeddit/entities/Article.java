@@ -1,6 +1,7 @@
 package feeddit.entities;
 
 import feeddit.controllers.ArticleController;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.beans.factory.support.SecurityContextProvider;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -11,6 +12,8 @@ import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import java.security.Security;
 import java.text.DateFormat;
@@ -30,7 +33,10 @@ public class Article{
     private Long id;
     private String byUser;
     private String headline;
+    @Size(min = 2,message = "Uneseni link nije ispravan.")
+    @URL(message = "Uneseni link ne postoji.")
     private String link;
+    @Size(min = 2,message = "Molimo unesite ime autora.")
     private String author;
     private Integer votes;
     private String entryDate;
