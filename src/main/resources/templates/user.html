@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Feeddit Spring App</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+    <div th:if="${not #lists.isEmpty(articles)}">
+        <h2>Your Article List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Article Id</th>
+                <th>Headline</th>
+                <th>Added on</th>
+                <th>Votes</th>
+                <th>View</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="article : ${articles}">
+                <div th:if="${article['byUser']} == ${#authentication.getName()}">
+                    <td th:text="${article.id}"><a href="/article/${article.id}">Id</a></td>
+                    <td th:text="${article.headline}">Headline</td>
+                    <td th:text="${article.entryDate}">Added on</td>
+                    <td th:text="${article.votes}">Votes</td>
+                    <td><a th:href="${'/article/' + article.id}">View</a></td>
+                    <td><a th:href="${'/article/delete/' + article.id}">Delete</a></td>
+                </div>
+            </tr>
+        </table>
+
+    </div>
+    <div th:if="${#lists.isEmpty(articles)}">
+        <label class="alert alert-info">Trenutno nema članaka za prikaz.</label>
+    </div>
+</div>
+</body>
+</html>
