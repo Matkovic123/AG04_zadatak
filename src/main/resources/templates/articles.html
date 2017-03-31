@@ -19,6 +19,7 @@
                 <th>Headline</th>
                 <th>Added on</th>
                 <th>Votes</th>
+                <th>Vote</th>
                 <th>View</th>
                 <th>Delete</th>
             </tr>
@@ -26,7 +27,8 @@
                 <td th:text="${article.id}"><a href="/article/${article.id}">Id</a></td>
                 <td th:text="${article.headline}">Headline</td>
                 <td th:text="${article.entryDate}">Added on</td>
-                <td th:text="${article.votes}">Votes</td>
+                <td th:text="${article.votes}"> </td>
+                <td> <a th:href="${'/upvote/' + article.id}" >Upvote /</a> <a th:href="${'/downvote/' + article.id}" >Downvote </a></td>
                 <td><a th:href="${'/article/' + article.id}">View</a></td>
                 <td><a th:href="${'/article/delete/' + article.id}">Delete</a></td>
             </tr>
