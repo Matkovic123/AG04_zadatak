@@ -27,18 +27,25 @@ import java.util.Date;
  */
 
 @Entity
+@Table
 public class Article{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column
     private String byUser;
+    @Column
     private String headline;
     @Size(min = 2,message = "Uneseni link nije ispravan.")
     @URL(message = "Uneseni link ne postoji.")
+    @Column
     private String link;
     @Size(min = 2,message = "Molimo unesite ime autora.")
+    @Column
     private String author;
+    @Column
     private Integer votes;
+    @Column
     private String entryDate;
 
     public Article(){

@@ -12,25 +12,27 @@
 
     <div th:if="${not #lists.isEmpty(articles)}">
         <h2>Your Article List</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>Article Id</th>
-                <th>Headline</th>
-                <th>Added on</th>
-                <th>Votes</th>
-                <th>View</th>
-                <th>Delete</th>
+        <table id="articleList" class="table table-striped" >
+            <thead>
+                <tr>
+                    <th>Headline</th>
+                    <th>Link</th>
+                    <th>Added on</th>
+                    <th>Votes</th>
+                    <th>View</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr th:each="article : ${articles}" th:if="${article['byUser']} == ${#authentication.getName()}">
+                <td th:text="${article.headline}">Headline</td>
+                <td><a target="_blank" th:href="${article.link}"> Link </a></td>
+                <td th:text="${article.entryDate}">Added on</td>
+                <td th:text="${article.votes}">Votes</td>
+                <td><a th:href="${'/article/' + article.id}">View</a></td>
+                <td><a th:href="${'/article/delete/' + article.id}">Delete</a></td>
             </tr>
-            <tr th:each="article : ${articles}">
-                <div th:if="${article['byUser']} == ${#authentication.getName()}">
-                    <td th:text="${article.id}"><a href="/article/${article.id}">Id</a></td>
-                    <td th:text="${article.headline}">Headline</td>
-                    <td th:text="${article.entryDate}">Added on</td>
-                    <td th:text="${article.votes}">Votes</td>
-                    <td><a th:href="${'/article/' + article.id}">View</a></td>
-                    <td><a th:href="${'/article/delete/' + article.id}">Delete</a></td>
-                </div>
-            </tr>
+            </tbody>
         </table>
 
     </div>
@@ -38,5 +40,9 @@
         <label class="alert alert-info">Trenutno nema članaka za prikaz.</label>
     </div>
 </div>
+
+<script src="//code.jquery.com/jquery-3.1.0.slim.min.js"></script>
+<script src="jquery-paginate.js"></script>
+
 </body>
 </html>

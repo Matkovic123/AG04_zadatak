@@ -1,6 +1,8 @@
 package feeddit.services;
 
 import feeddit.entities.Article;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * Created by Matkovic on 8.3.2017..
@@ -16,4 +18,7 @@ public interface ArticleService {
     Article saveArticle(Article article);
 
     void deleteArticle (Long id);
+
+    Page<Article> listAllByPage(Pageable pageable);
+
 }

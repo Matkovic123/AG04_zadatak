@@ -4,6 +4,8 @@ import feeddit.entities.Article;
 import feeddit.repositories.ArticleRepository;
 import feeddit.repositories.VoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -46,4 +48,10 @@ public class ArticleServiceImpl implements ArticleService{
     public void deleteArticle(Long id){
         articleRepository.delete(id);
     }
+
+    @Override
+    public Page<Article> listAllByPage(Pageable pageable) {
+        return articleRepository.findAll(pageable);
+    }
+
 }
