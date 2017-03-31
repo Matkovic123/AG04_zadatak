@@ -2,6 +2,7 @@ package feeddit.services;
 
 import feeddit.entities.Article;
 import feeddit.repositories.ArticleRepository;
+import feeddit.repositories.VoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -15,14 +16,24 @@ public class ArticleServiceImpl implements ArticleService{
     @Autowired
     private ArticleRepository articleRepository;
 
+    @Autowired
+    private VoteRepository voteRepository;
+
     @Override
     public Iterable<Article> listAllArticles(){
-        return articleRepository.findAll();
+        return
+                articleRepository.findAll();
     }
+
 
     @Override
     public Article getArticleById(Long id){
         return articleRepository.findOne(id);
+    }
+
+    @Override
+    public Boolean checkIfArticleExists(Long id) {
+        return articleRepository.exists(id);
     }
 
     @Override

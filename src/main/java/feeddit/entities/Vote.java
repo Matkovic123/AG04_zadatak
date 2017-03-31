@@ -17,12 +17,14 @@ public class Vote {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Integer vote = new Integer(0);
-    private String username;
+    private Long userId;
     private Long articleId;
 
-    public Vote(Integer vote, String username, Long articleId) {
+    public Vote(){}
+
+    public Vote(Integer vote, Long userId, Long articleId) {
         this.vote = vote;
-        this.username = username;
+        this.userId = userId;
         this.articleId = articleId;
     }
 
@@ -42,12 +44,12 @@ public class Vote {
         this.vote = vote;
     }
 
-    public String getUsername() {
-        return username;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Long getArticleId() {

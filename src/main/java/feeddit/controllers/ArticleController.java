@@ -1,5 +1,6 @@
 package feeddit.controllers;
 
+import feeddit.comparators.ArticleIdComparator;
 import feeddit.entities.Article;
 import feeddit.services.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Created by Matkovic on 8.3.2017..
@@ -35,7 +39,9 @@ public class ArticleController {
 
     @RequestMapping(value = "articles", method = RequestMethod.GET)
     public String list(Model model) {
-        model.addAttribute("articles", articleService.listAllArticles());
+        ArrayList<Article> articleList =new ArrayList<Article>((Collection<? extends Article>) articleService.listAllArticles());
+        Collections.sort(articleList, new ArticleIdComparator());
+        model.addAttribute("articles", articleList);
         return "articles";
     }
 

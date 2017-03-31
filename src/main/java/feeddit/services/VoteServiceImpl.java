@@ -21,4 +21,16 @@ public class VoteServiceImpl implements VoteService {
 
         return voteRepository.save(vote);
     }
+
+    @Override
+    public Iterable<Vote> getAllVotes() {
+        return voteRepository.findAll();
+    }
+
+    @Override
+    public void deleteVote(Long id) {
+        voteRepository.delete(id);
+    }
+
+
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Feeddit Spring App</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+    <div  th:if="${upvoteSuccessful}" class="text-center">
+        <label class="text-center alert alert-success">
+            <p>Vaš glas je uspješno zaprimljen.</p>
+        </label>
+    </div>
+    <div  th:if="${downvoteSuccessful}" class="text-center">
+        <label class="text-center alert alert-success">
+            <p>Vaš glas je uspješno opozvan.</p>
+        </label>
+    </div>
+    <div class="text-center">
+        <a th:href="@{/articles}"><button type="button"  class="btn btn-default">U redu</button></a>
+    </div>
+
+
+
+
+</div>
+</body>
+</html>

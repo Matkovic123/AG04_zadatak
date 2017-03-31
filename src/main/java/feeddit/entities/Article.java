@@ -42,7 +42,6 @@ public class Article{
     private String entryDate;
 
     public Article(){
-        System.out.println("Inside default article constructor");
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         Date today = Calendar.getInstance().getTime();
         this.entryDate = df.format(today);

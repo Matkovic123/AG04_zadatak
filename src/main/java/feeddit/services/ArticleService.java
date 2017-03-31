@@ -11,6 +11,8 @@ public interface ArticleService {
 
     Article getArticleById(Long id);
 
+    Boolean checkIfArticleExists(Long id);
+
     Article saveArticle(Article article);
 
     void deleteArticle (Long id);

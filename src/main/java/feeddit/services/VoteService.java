@@ -8,4 +8,10 @@ import feeddit.entities.Vote;
 public interface VoteService {
 
     Vote saveVote(Vote vote);
+
+    Iterable<Vote> getAllVotes();
+
+    void deleteVote (Long id);
+
+
 }
