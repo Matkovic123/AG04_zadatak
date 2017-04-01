@@ -4,6 +4,8 @@ package feeddit.controllers;
 import feeddit.entities.Article;
 import feeddit.services.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -32,20 +34,21 @@ public class UserController {
     }
 
     @GetMapping("user")
-    public String list(Model model) {
+    public String list(Model model,Pageable pageable) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 
-        ArrayList<Article> articleList = new ArrayList<Article>((Collection<? extends Article>) articleService.listAllArticles());
+        Page<Article> articlePage = articleService.findAll(pageable);
         List<Article> newArticleList = new ArrayList<>();
-        for(Article article : articleList){
+        PageWrapper<Article> page = new PageWrapper<>(articlePage, "/user");
+
+
+        for(Article article : articlePage){
             if(article.getByUser().toString().equals(username))
                 newArticleList.add(article);
         }
-        model.addAttribute("articles",newArticleList);
+        model.addAttribute("articles", page.getContent());
+        model.addAttribute("page",page);
         return "user";
     }
-
-
-
 }

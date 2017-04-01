@@ -4,6 +4,8 @@ import feeddit.comparators.ArticleIdComparator;
 import feeddit.entities.Article;
 import feeddit.services.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,10 +40,11 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "articles", method = RequestMethod.GET)
-    public String list(Model model) {
-        ArrayList<Article> articleList =new ArrayList<Article>((Collection<? extends Article>) articleService.listAllArticles());
-        Collections.sort(articleList, new ArticleIdComparator());
-        model.addAttribute("articles", articleList);
+    public String list(Model model, Pageable pageable) {
+        Page<Article> articlePage = articleService.findAll(pageable);
+        PageWrapper<Article> page = new PageWrapper<>(articlePage, "/articles");
+        model.addAttribute("articles", page.getContent());
+        model.addAttribute("page",page);
         return "articles";
     }
 
