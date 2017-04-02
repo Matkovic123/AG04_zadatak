@@ -3,6 +3,18 @@
 <head lang="en">
     <title>Feeddit App Articles</title>
 
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(document).ready( function ()
+        {
+            $.noConflict();
+            $('#articletable').DataTable();
+        } );
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css"/>
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
@@ -18,16 +30,18 @@
     <div th:if="${not #lists.isEmpty(articles)}" >
            <h2>Article List</h2>
 
-           <table class="table table-striped">
+           <table class="table table-striped" id="articletable">
+               <thead>
                <tr>
-                <th>Headline</th>
-                <th>Link</th>
-                <th>Added on</th>
-                <th>Votes</th>
-                <th>Vote</th>
-                <th>View</th>
-                <th>Delete</th>
-            </tr>
+                    <th>Headline</th>
+                    <th>Link</th>
+                    <th>Added on</th>
+                    <th>Votes</th>
+                    <th>Vote</th>
+                    <th>View</th>
+                </tr>
+               </thead>
+               <tbody>
             <tr th:each="article : ${articles}">
                 <td th:text="${article.headline}">Headline</td>
                 <td><a target="_blank" th:href="${article.link}"> Link </a></td>
@@ -36,8 +50,8 @@
                 <td><a th:href="${'/upvote/' + article.id}" >Upvote  </a>
                     <a th:href="${'/downvote/' + article.id}">Downvote </a></td>
                 <td><a th:href="${'/article/' + article.id}">View</a></td>
-                <td><a th:href="${'/article/delete/' + article.id}">Delete</a></td>
             </tr>
+               </tbody>
         </table>
 
     </div>
