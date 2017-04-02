@@ -19,15 +19,11 @@ public class ArticleServiceImpl implements ArticleService{
     private ArticleRepository articleRepository;
 
     @Autowired
-    private VoteRepository voteRepository;
-
-    @Override
+    private VoteRepository voteRepository;    @Override
     public Iterable<Article> listAllArticles(){
         return
                 articleRepository.findAll();
     }
-
-
     @Override
     public Article getArticleById(Long id){
         return articleRepository.findOne(id);
@@ -50,7 +46,7 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
-    public Page<Article> listAllByPage(Pageable pageable) {
+    public Page<Article> findAll(Pageable pageable) {
         return articleRepository.findAll(pageable);
     }
 

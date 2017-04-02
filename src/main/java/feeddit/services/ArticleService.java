@@ -19,6 +19,6 @@ public interface ArticleService {
 
     void deleteArticle (Long id);
 
-    Page<Article> listAllByPage(Pageable pageable);
+    Page<Article> findAll(Pageable pageable);
 
 }
