@@ -71,7 +71,7 @@ public class VoteController {
                 article.setVotes(article.getVotes()+2);
                 articleService.saveArticle(article);
                 model.addAttribute("upvoteSuccessful",true);
-                return "/voteconfirmation";
+                return "voteconfirmation";
             }
         }
         //add new vote if checkpoins have been passed
@@ -82,7 +82,7 @@ public class VoteController {
         articleService.saveArticle(article);
         model.addAttribute("upvoteSuccessful", true);
 
-        return "/voteconfirmation";
+        return "voteconfirmation";
     }
 
     @RequestMapping("downvote/{id}")
@@ -123,7 +123,7 @@ public class VoteController {
                 article.setVotes(article.getVotes()-2);
                 articleService.saveArticle(article);
                 model.addAttribute("downvoteSuccessful", true);
-                return "/voteconfirmation";
+                return "voteconfirmation";
             }
         }
         //add new vote if checkpoins have been passed
@@ -134,12 +134,8 @@ public class VoteController {
         articleService.saveArticle(article);
         model.addAttribute("downvoteSuccessful", true);
 
-        return "/voteconfirmation";
-    }
-
-    @RequestMapping("/voteconfirmation")
-    public String getVoteConfirmation(){
         return "voteconfirmation";
     }
+
 
 }
