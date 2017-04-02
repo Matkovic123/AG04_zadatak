@@ -4,7 +4,7 @@
     <title>Feeddit App Articles</title>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
 
     <script>
         $(document).ready( function ()
@@ -21,25 +21,19 @@
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 
-    <div  th:if="${upvoteSuccessful}" class="text-center">
-        <label class="text-center alert alert-success">
-            <p>cvbnjkfhrdt</p>
-        </label>
-    </div>
-
     <div th:if="${not #lists.isEmpty(articles)}" >
            <h2>Article List</h2>
 
            <table class="table table-striped" id="articletable">
                <thead>
-               <tr>
-                    <th>Headline</th>
-                    <th>Link</th>
-                    <th>Added on</th>
-                    <th>Votes</th>
-                    <th>Vote</th>
-                    <th>View</th>
-                </tr>
+                    <tr>
+                        <th>Headline</th>
+                        <th>Link</th>
+                        <th>Added on</th>
+                        <th>Votes</th>
+                        <th>Vote</th>
+                        <th>View</th>
+                    </tr>
                </thead>
                <tbody>
             <tr th:each="article : ${articles}">
